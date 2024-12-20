@@ -1,5 +1,5 @@
 import React from 'react';
-import { QrCode, Sparkles } from 'lucide-react';
+import { QrCode, Sparkles, Wand2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface NavMenuProps {
