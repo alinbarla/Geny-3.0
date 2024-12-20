@@ -36,7 +36,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({ onItemClick }) => {
             onClick={handleClick}
             className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition-colors"
           >
-            <QrCode className="w-5 h-5" />
+            <Sparkles className="w-5 h-5" />
             <span className="font-medium">QR Code Reader</span>
           </Link>
         </li>
