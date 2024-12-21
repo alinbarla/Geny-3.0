@@ -7,13 +7,14 @@ import { useQRCodeReader } from '../hooks/useQRCodeReader';
 import { AlertCircle, Sparkles, QrCode } from 'lucide-react';
 
 const QRCodeReader: React.FC = () => {
-  const { result, error, isProcessing, readQRCode } = useQRCodeReader();
+  const { result, error, isProcessing, readQRCode, resetReader } = useQRCodeReader();
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [progress, setProgress] = React.useState(0);
 
   const handleFileSelect = (file: File) => {
     setSelectedFile(file);
     setProgress(0);
+    resetReader(); // Reset previous results when new file is selected
   };
 
   const handleRead = () => {
@@ -60,7 +61,7 @@ const QRCodeReader: React.FC = () => {
             <div id="qr-reader" className="hidden"></div>
             <FileUpload onFileSelect={handleFileSelect} />
             
-            {selectedFile && !result && !error && (
+            {selectedFile && (
               <ReadButton 
                 onClick={handleRead}
                 isReading={isProcessing}
