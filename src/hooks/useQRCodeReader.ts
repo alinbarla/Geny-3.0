@@ -6,6 +6,12 @@ export const useQRCodeReader = () => {
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  const resetReader = () => {
+    setResult(null);
+    setError(null);
+    setIsProcessing(false);
+  };
+
   const readQRCode = async (file: File) => {
     setIsProcessing(true);
     setError(null);
@@ -14,10 +20,8 @@ export const useQRCodeReader = () => {
     try {
       const html5QrCode = new Html5Qrcode("qr-reader");
       
-      const imageFile = file;
-      
       try {
-        const decodedText = await html5QrCode.scanFile(imageFile, true);
+        const decodedText = await html5QrCode.scanFile(file, true);
         setResult(decodedText);
       } catch (err) {
         setError("Could not find a valid QR code in the image.");
@@ -35,6 +39,7 @@ export const useQRCodeReader = () => {
     result,
     error,
     isProcessing,
-    readQRCode
+    readQRCode,
+    resetReader
   };
 };
